@@ -9,8 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+   
     @IBOutlet weak var mensShoeSizeTextField: UITextField!
     @IBOutlet weak var mensConvertedShoeSizeLabel: UILabel!
+    
+    @IBOutlet weak var womensShoeSizeTextField: UITextField!
+    @IBOutlet weak var womensConvertedShoeSizeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,7 +26,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func converButtonPressed(sender: UIButton) {
+    @IBAction func convertButtonPressed(sender: UIButton) {
         
         //creates our conversion constant
         let conversionConstant = 30;
@@ -46,12 +51,20 @@ class ViewController: UIViewController {
 
         //condensed version of whats above
         let sizeFromTextField = (mensShoeSizeTextField.text.toInt())!
-        mensConvertedShoeSizeLabel.text = "\(sizeFromTextField + conversionConstant)"
+        mensConvertedShoeSizeLabel.text = "EU Size: "+"\(sizeFromTextField + conversionConstant)"
         mensConvertedShoeSizeLabel.hidden = false
         
         //hides keyboard
         mensShoeSizeTextField.resignFirstResponder()
         
+    }
+    @IBAction func convert2ButtonPressed(sender: UIButton) {
+        let conversionConstant = 30
+        let sizeInField = Double((womensShoeSizeTextField.text as NSString).doubleValue)
+        var newLabelText = "EU Size: " + "\(30+sizeInField)"
+        womensConvertedShoeSizeLabel.text = newLabelText
+        womensConvertedShoeSizeLabel.hidden = false
+        womensShoeSizeTextField.resignFirstResponder()
     }
 
 }
